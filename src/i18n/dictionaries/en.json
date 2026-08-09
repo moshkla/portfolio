@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "aiNative": "AI Native",
+    "services": "Services",
+    "contact": "Contact",
+    "cta": "Let's talk"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "ctaPrimary": "Let's work together",
+    "ctaSecondary": "Download résumé",
+    "scroll": "Scroll to About"
+  },
+  "sections": {
+    "about": { "eyebrow": "About", "title": "Engineering that outlives the sprint." },
+    "skills": { "eyebrow": "Skills", "title": "The toolkit, honestly stated." },
+    "experience": { "eyebrow": "Experience", "title": "Five years, three countries." },
+    "projects": { "eyebrow": "Featured Projects", "title": "Shipped, not shelved." },
+    "aiNative": { "eyebrow": "AI Native", "title": "Not AI-curious. AI-native." },
+    "services": { "eyebrow": "Services", "title": "How I can help." },
+    "contact": { "eyebrow": "Contact", "title": "Let's build something." }
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "optional": "(optional)",
+    "send": "Send message",
+    "sending": "Sending…",
+    "sent": "Message sent"
+  },
+  "common": {
+    "role": "Role",
+    "current": "Current",
+    "appStore": "App Store",
+    "googlePlay": "Google Play",
+    "github": "GitHub",
+    "backHome": "Back home",
+    "notFound": "This page doesn't exist."
+  }
+}

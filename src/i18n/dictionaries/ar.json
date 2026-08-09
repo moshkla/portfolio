@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "about": "نبذة",
+    "skills": "المهارات",
+    "experience": "الخبرات",
+    "projects": "المشاريع",
+    "aiNative": "الذكاء الاصطناعي",
+    "services": "الخدمات",
+    "contact": "تواصل",
+    "cta": "لنتحدث"
+  },
+  "hero": {
+    "greeting": "مرحباً، أنا",
+    "ctaPrimary": "لنعمل معاً",
+    "ctaSecondary": "تحميل السيرة الذاتية",
+    "scroll": "انتقل إلى النبذة"
+  },
+  "sections": {
+    "about": { "eyebrow": "نبذة", "title": "هندسة برمجيات تدوم." },
+    "skills": { "eyebrow": "المهارات", "title": "الأدوات التي أعمل بها." },
+    "experience": { "eyebrow": "الخبرات", "title": "خمس سنوات، ثلاث دول." },
+    "projects": { "eyebrow": "أبرز المشاريع", "title": "تطبيقات وصلت للمستخدمين." },
+    "aiNative": { "eyebrow": "الذكاء الاصطناعي", "title": "مطوّر يعمل بالذكاء الاصطناعي." },
+    "services": { "eyebrow": "الخدمات", "title": "كيف يمكنني المساعدة." },
+    "contact": { "eyebrow": "تواصل", "title": "لنبنِ شيئاً معاً." }
+  },
+  "contact": {
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "subject": "الموضوع",
+    "message": "الرسالة",
+    "optional": "(اختياري)",
+    "send": "إرسال الرسالة",
+    "sending": "جارٍ الإرسال…",
+    "sent": "تم إرسال الرسالة"
+  },
+  "common": {
+    "role": "الدور",
+    "current": "حالياً",
+    "appStore": "آب ستور",
+    "googlePlay": "جوجل بلاي",
+    "github": "جيت هاب",
+    "backHome": "العودة للرئيسية",
+    "notFound": "هذه الصفحة غير موجودة."
+  }
+}
