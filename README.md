@@ -1,5 +1,7 @@
 # Anas Abd Elazim — Portfolio
 
+**Live:** https://portfolio-sigma-ten-69.vercel.app
+
 A premium personal portfolio for a Senior Flutter Developer & AI Native Engineer.
 
 **Stack:** Next.js 15 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Radix/shadcn-style primitives · Lucide
