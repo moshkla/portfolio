@@ -4,13 +4,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { Loader2, Send } from "lucide-react";
+import { AlertTriangle, Check, Copy, Loader2, Mail, MessageCircle, Send } from "lucide-react";
 import { contactSchema, type ContactInput } from "@/lib/contact-schema";
 import { profile } from "@/data/profile";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -23,6 +22,9 @@ function FieldError({ message }: { message?: string }) {
 
 export function ContactForm() {
   const [sent, setSent] = useState(false);
+  /** Set when the message could not be delivered from the site. */
+  const [failure, setFailure] = useState<string | null>(null);
+  const [copied, setCopied] = useState<"email" | "message" | null>(null);
 
   const {
     register,
@@ -35,16 +37,31 @@ export function ContactForm() {
     defaultValues: { name: "", email: "", subject: "", message: "", company: "" },
   });
 
-  /** Never lose a message: hand the visitor a prefilled mail draft instead. */
-  const openMailFallback = () => {
-    const { name, email, subject, message } = getValues();
-    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+  const composeBody = () => {
+    const { name, email, message } = getValues();
+    return `Name: ${name}\nEmail: ${email}\n\n${message}`;
+  };
+
+  const openMailDraft = () => {
+    const { name, subject } = getValues();
     window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(
       subject?.trim() || `Portfolio enquiry from ${name}`
-    )}&body=${encodeURIComponent(body)}`;
+    )}&body=${encodeURIComponent(composeBody())}`;
+  };
+
+  const copy = async (what: "email" | "message") => {
+    const text = what === "email" ? profile.email : composeBody();
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(what);
+      window.setTimeout(() => setCopied(null), 2000);
+    } catch {
+      toast.error("Couldn't copy — please select the text manually.");
+    }
   };
 
   const onSubmit = async (values: ContactInput) => {
+    setFailure(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -64,19 +81,15 @@ export function ContactForm() {
         | null;
 
       if (data?.fallback) {
-        toast.error(data.error ?? "Couldn't send from here", {
-          description: "Opening your email app instead.",
-          action: { label: "Open mail", onClick: openMailFallback },
-        });
+        // Show a persistent panel rather than a toast: a toast auto-dismisses
+        // after a few seconds and would take the only recovery route with it.
+        setFailure(data.error ?? "This message couldn't be sent from the site.");
         return;
       }
 
       toast.error(data?.error ?? "Something went wrong. Please try again.");
     } catch {
-      toast.error("Network error", {
-        description: "Check your connection, or email me directly.",
-        action: { label: "Open mail", onClick: openMailFallback },
-      });
+      setFailure("Couldn't reach the server — you may be offline.");
     }
   };
 
@@ -140,7 +153,72 @@ export function ContactForm() {
         <input id="company" tabIndex={-1} autoComplete="off" {...register("company")} />
       </div>
 
-      <Button type="submit" size="lg" disabled={isSubmitting} className={cn("mt-1 w-full sm:w-auto")}>
+      {/*
+        Delivery fallback.
+        Stays on screen until the visitor acts. `mailto:` silently does nothing
+        on machines with no mail client configured, so the address is also shown
+        as copyable text and WhatsApp is offered as a second route. The typed
+        message is never cleared on failure.
+      */}
+      {failure && (
+        <div
+          role="alert"
+          className="rounded-xl border border-amber-500/30 bg-amber-500/[0.07] p-5"
+        >
+          {/* amber-200 measures 1.19:1 on the light card — needs a dark
+              counterpart per theme. amber-700 is 4.82:1 on light. */}
+          <p className="flex items-center gap-2 text-sm font-medium text-amber-700 dark:text-amber-200">
+            <AlertTriangle className="size-4 shrink-0" aria-hidden />
+            {failure}
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Your message is still in the form below — nothing is lost. Send it directly instead:
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Button type="button" size="sm" onClick={openMailDraft}>
+              <Mail aria-hidden />
+              Open in email app
+            </Button>
+            <Button type="button" variant="secondary" size="sm" onClick={() => copy("message")}>
+              {copied === "message" ? <Check aria-hidden /> : <Copy aria-hidden />}
+              {copied === "message" ? "Copied" : "Copy message"}
+            </Button>
+            <Button asChild variant="secondary" size="sm">
+              <a href={profile.links.whatsapp} target="_blank" rel="noopener noreferrer">
+                <MessageCircle aria-hidden />
+                WhatsApp
+              </a>
+            </Button>
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-amber-500/20 pt-4">
+            <span className="text-xs text-muted-foreground">Or email me at</span>
+            <code className="rounded-md bg-foreground/[0.06] px-2 py-1 text-xs text-foreground">
+              {profile.email}
+            </code>
+            <button
+              type="button"
+              onClick={() => copy("email")}
+              className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
+            >
+              {copied === "email" ? (
+                <>
+                  <Check className="size-3" aria-hidden />
+                  Copied
+                </>
+              ) : (
+                <>
+                  <Copy className="size-3" aria-hidden />
+                  Copy
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+      )}
+
+      <Button type="submit" size="lg" disabled={isSubmitting} className="mt-1 w-full sm:w-auto">
         {isSubmitting ? (
           <>
             <Loader2 className="animate-spin" aria-hidden />
