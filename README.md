@@ -8,14 +8,21 @@ A premium personal portfolio for a Senior Flutter Developer & AI Native Engineer
 
 ## Lighthouse
 
-Measured against a production build (`next build && next start`), median of three runs:
+Measured against a production build (`next build && next start`):
 
 | | Performance | Accessibility | Best Practices | SEO |
 |---|---|---|---|---|
-| Desktop | 97 | 100 | 100 | 100 |
-| Mobile | 95 | 100 | 100 | 100 |
+| Desktop | 97–100 | 100 | 100 | 100 |
+| Mobile | 92–97 (median ~94) | 100 | 100 | 100 |
 
-FCP 0.9s · CLS 0 · TBT ~40ms (mobile). Observed (unthrottled) FCP and LCP are both ~187ms.
+FCP 0.9s · CLS 0 · TBT 30–140ms (mobile). Mobile Performance genuinely varies run to
+run — treat a single number with suspicion, and compare medians of 3+ runs before
+concluding a change regressed anything.
+
+Worth knowing: **observed (unthrottled) FCP and LCP are both ~187ms** and identical,
+meaning the hero paints immediately. The ~3s mobile LCP is Lighthouse's simulated
+4G + 4× CPU model, where LCP is pinned to time-to-interactive, so it tracks total
+JS execution rather than anything visual.
 
 ## Getting started
 

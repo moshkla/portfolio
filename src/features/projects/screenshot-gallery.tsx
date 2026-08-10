@@ -6,9 +6,8 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
-/** Native size of the downloaded App Store assets. */
-const SHOT_W = 540;
-const SHOT_H = 1173;
+/** Most listings are shot on modern iPhones; older ones are 9:16 (see below). */
+const DEFAULT_SIZE = { w: 540, h: 1173 };
 
 type Props = {
   screenshots: string[];
@@ -16,6 +15,8 @@ type Props = {
   /** Small app icon floated over the artwork. */
   icon: string | null;
   accent: [string, string];
+  /** Intrinsic size of these assets, so the reserved box matches and CLS stays 0. */
+  size?: { w: number; h: number };
 };
 
 /**
@@ -25,9 +26,14 @@ type Props = {
  * These assets are the clients' own marketing screenshots and already contain a
  * device frame, so they are deliberately NOT wrapped in another phone mockup.
  */
-export function ScreenshotGallery({ screenshots, appName, icon, accent }: Props) {
+export function ScreenshotGallery({ screenshots, appName, icon, accent, size }: Props) {
   const [openAt, setOpenAt] = useState<number | null>(null);
   const [from, to] = accent;
+  const { w: shotW, h: shotH } = size ?? DEFAULT_SIZE;
+  // Shorter (9:16) assets would leave a band of dead space above them at the
+  // same width as tall (9:19.5) ones, so they get a little more width to land
+  // at a comparable height. Keeps all six featured cards reading as a set.
+  const isShort = shotH / shotW < 2;
 
   const close = useCallback(() => setOpenAt(null), []);
   const step = useCallback(
@@ -67,7 +73,8 @@ export function ScreenshotGallery({ screenshots, appName, icon, accent }: Props)
               <li
                 key={src}
                 className={cn(
-                  "w-[27%] max-w-[132px] translate-y-[14%]",
+                  "translate-y-[14%]",
+                  isShort ? "w-[31%] max-w-[152px]" : "w-[27%] max-w-[132px]",
                   isCentre && "z-10 -translate-y-[4%]"
                 )}
               >
@@ -80,8 +87,8 @@ export function ScreenshotGallery({ screenshots, appName, icon, accent }: Props)
                   <Image
                     src={src}
                     alt={`${appName} — App Store screenshot ${i + 1}`}
-                    width={SHOT_W}
-                    height={SHOT_H}
+                    width={shotW}
+                    height={shotH}
                     loading="lazy"
                     sizes="(max-width: 640px) 30vw, 132px"
                     className="h-auto w-full"
@@ -130,8 +137,8 @@ export function ScreenshotGallery({ screenshots, appName, icon, accent }: Props)
                 key={screenshots[openAt]}
                 src={screenshots[openAt]}
                 alt={`${appName} — App Store screenshot ${openAt + 1}`}
-                width={SHOT_W}
-                height={SHOT_H}
+                width={shotW}
+                height={shotH}
                 priority
                 sizes="(max-width: 640px) 80vw, 420px"
                 className="max-h-[76vh] w-auto rounded-2xl ring-1 ring-white/15"

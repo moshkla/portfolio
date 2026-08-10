@@ -23,6 +23,7 @@ export function AppArtwork({ project, priority = false }: { project: Project; pr
         appName={project.name}
         icon={project.icon}
         accent={project.accent}
+        size={project.screenshotSize}
       />
     );
   }

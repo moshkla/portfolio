@@ -23,6 +23,10 @@ export type Project = {
   /** Real App Store marketing screenshots. Already device-framed by the client,
    *  so they must never be wrapped in another phone mockup. */
   screenshots?: string[];
+  /** Intrinsic size of this project's screenshots. Listings shot on older
+   *  iPhones are 9:16 rather than 9:19.5, and getting this wrong reserves the
+   *  wrong height and reintroduces layout shift. Defaults to 540x1173. */
+  screenshotSize?: { w: number; h: number };
   featured: boolean;
   /** Tailwind gradient stops for the card's ambient glow + fallback art. */
   accent: [string, string];
@@ -144,25 +148,6 @@ export const projects: Project[] = [
     accent: ["#22C55E", "#84CC16"],
   },
   {
-    slug: "almajdyah-residence",
-    name: "Almajdyah Residence",
-    nameAr: "الماجدية ريزدنس",
-    category: "PropTech",
-    tagline: "A residential community in your pocket.",
-    description:
-      "A resident-facing application for the Almajdyah Residence community, bringing services, requests and community information into a single app. Published to both stores during its run; the listings have since been retired by the client.",
-    role: "Flutter Developer",
-    stack: ["Flutter", "Dart", "REST APIs", "Firebase", "Push Notifications", "Localization"],
-    links: {},
-    icon: null,
-    featured: true,
-    accent: ["#8B5CF6", "#EC4899"],
-  },
-
-  /* ---------------------------------------------------------------------- */
-  /* Additional shipped work                                                 */
-  /* ---------------------------------------------------------------------- */
-  {
     slug: "arco",
     name: "Arco Services",
     nameAr: "آركو للخدمات",
@@ -177,8 +162,34 @@ export const projects: Project[] = [
       android: "https://play.google.com/store/apps/details?id=sa.arco.services",
     },
     icon: "/apps/arco.jpg",
-    featured: false,
+    screenshots: [
+      "/apps/screens/arco-1.webp",
+      "/apps/screens/arco-2.webp",
+      "/apps/screens/arco-3.webp",
+    ],
+    // Older-generation iPhone assets — 9:16, not the 9:19.5 of the others.
+    screenshotSize: { w: 540, h: 960 },
+    featured: true,
     accent: ["#0EA5E9", "#6366F1"],
+  },
+
+  /* ---------------------------------------------------------------------- */
+  /* Additional shipped work                                                */
+  /* ---------------------------------------------------------------------- */
+  {
+    slug: "almajdyah-residence",
+    name: "Almajdyah Residence",
+    nameAr: "الماجدية ريزدنس",
+    category: "PropTech",
+    tagline: "A residential community in your pocket.",
+    description:
+      "A resident-facing application for the Almajdyah Residence community, bringing services, requests and community information into a single app. Published to both stores during its run; the listings have since been retired by the client.",
+    role: "Flutter Developer",
+    stack: ["Flutter", "Dart", "REST APIs", "Firebase", "Push Notifications", "Localization"],
+    links: {},
+    icon: null,
+    featured: false,
+    accent: ["#8B5CF6", "#EC4899"],
   },
   {
     slug: "hayatona",
@@ -268,7 +279,7 @@ export const projects: Project[] = [
   },
 
   /* ---------------------------------------------------------------------- */
-  /* Open source                                                             */
+  /* Open source                                                            */
   /* ---------------------------------------------------------------------- */
   {
     slug: "heraj",
