@@ -172,6 +172,98 @@ export const projects: Project[] = [
     featured: true,
     accent: ["#0EA5E9", "#6366F1"],
   },
+  {
+    slug: "hayatona",
+    name: "Hayatona Clinics",
+    nameAr: "عيادات حياتنا",
+    category: "HealthTech",
+    tagline: "Virtual clinics for healthier living.",
+    description:
+      "A telehealth app for Hayatona, a health-awareness association focused on preventing chronic disease through nutrition, fitness and health education. Patients book virtual appointments with practitioners over video, audio or chat.",
+    role: "Flutter Developer",
+    stack: ["Flutter", "Dart", "Video Calling", "REST APIs", "Firebase", "Localization"],
+    links: {
+      ios: "https://apps.apple.com/us/app/hayatona-clinics-%D8%B9%D9%8A%D8%A7%D8%AF%D8%A7%D8%AA-%D8%AD%D9%8A%D8%A7%D8%AA%D9%86%D8%A7/id1582945676",
+    },
+    icon: "/apps/hayatona.jpg",
+    screenshots: [
+      "/apps/screens/hayatona-1.webp",
+      "/apps/screens/hayatona-2.webp",
+      "/apps/screens/hayatona-3.webp",
+    ],
+    screenshotSize: { w: 540, h: 960 },
+    featured: true,
+    accent: ["#14B8A6", "#3B82F6"],
+  },
+  {
+    slug: "siru",
+    name: "Siru Map",
+    nameAr: "خرائط سيروا",
+    category: "Geospatial",
+    tagline: "Mapping the links between civilizations.",
+    description:
+      "A geospatial application that aligns the places and events of human civilizations on a shared map and timeline, letting users trace the connections between their own history and the rest of the world.",
+    role: "Flutter Developer",
+    stack: ["Flutter", "Dart", "Maps & GIS", "REST APIs", "Custom Animation"],
+    links: {
+      ios: "https://apps.apple.com/us/app/siru-%D8%B3%D9%8A%D8%B1%D9%88%D8%A7/id1645884389",
+    },
+    icon: "/apps/siru.jpg",
+    screenshots: [
+      "/apps/screens/siru-1.webp",
+      "/apps/screens/siru-2.webp",
+      "/apps/screens/siru-3.webp",
+    ],
+    screenshotSize: { w: 540, h: 960 },
+    featured: true,
+    accent: ["#F97316", "#EAB308"],
+  },
+  {
+    slug: "meer",
+    name: "Meer",
+    nameAr: "مير",
+    category: "Marketplace",
+    tagline: "Where advertising talent meets business.",
+    description:
+      "A two-sided marketplace connecting creative talent in advertising and marketing with business owners. Creatives build profiles and showcase past work; businesses post projects and receive offers, with direct messaging throughout.",
+    role: "Flutter Developer",
+    stack: ["Flutter", "Dart", "Real-time Chat", "REST APIs", "Firebase", "File Upload"],
+    links: {
+      ios: "https://apps.apple.com/us/app/meer/id1610110479",
+    },
+    icon: "/apps/meer.jpg",
+    screenshots: [
+      "/apps/screens/meer-1.webp",
+      "/apps/screens/meer-2.webp",
+      "/apps/screens/meer-3.webp",
+    ],
+    screenshotSize: { w: 540, h: 960 },
+    featured: true,
+    accent: ["#A855F7", "#3B82F6"],
+  },
+  {
+    slug: "on-nota",
+    name: "On Nota",
+    nameAr: "عالحساب",
+    category: "E-Commerce",
+    tagline: "Grocery shopping, simplified.",
+    description:
+      "A grocery and everyday-essentials shopping app focused on making the weekly shop fast and frictionless, from browsing to checkout.",
+    role: "Flutter Developer",
+    stack: ["Flutter", "Dart", "REST APIs", "Payment Gateways", "Push Notifications"],
+    links: {
+      ios: "https://apps.apple.com/eg/app/%D8%B9%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%A8/id6462117195",
+    },
+    icon: "/apps/on-nota.jpg",
+    screenshots: [
+      "/apps/screens/on-nota-1.webp",
+      "/apps/screens/on-nota-2.webp",
+      "/apps/screens/on-nota-3.webp",
+    ],
+    screenshotSize: { w: 540, h: 960 },
+    featured: true,
+    accent: ["#EC4899", "#F43F5E"],
+  },
 
   /* ---------------------------------------------------------------------- */
   /* Additional shipped work                                                */
@@ -190,74 +282,6 @@ export const projects: Project[] = [
     icon: null,
     featured: false,
     accent: ["#8B5CF6", "#EC4899"],
-  },
-  {
-    slug: "hayatona",
-    name: "Hayatona Clinics",
-    nameAr: "عيادات حياتنا",
-    category: "HealthTech",
-    tagline: "Virtual clinics for healthier living.",
-    description:
-      "A telehealth app for Hayatona, a health-awareness association focused on preventing chronic disease through nutrition, fitness and health education. Patients book virtual appointments with practitioners over video, audio or chat.",
-    role: "Flutter Developer",
-    stack: ["Flutter", "Dart", "Video Calling", "REST APIs", "Firebase", "Localization"],
-    links: {
-      ios: "https://apps.apple.com/us/app/hayatona-clinics-%D8%B9%D9%8A%D8%A7%D8%AF%D8%A7%D8%AA-%D8%AD%D9%8A%D8%A7%D8%AA%D9%86%D8%A7/id1582945676",
-    },
-    icon: "/apps/hayatona.jpg",
-    featured: false,
-    accent: ["#14B8A6", "#3B82F6"],
-  },
-  {
-    slug: "siru",
-    name: "Siru Map",
-    nameAr: "خرائط سيروا",
-    category: "Geospatial",
-    tagline: "Mapping the links between civilizations.",
-    description:
-      "A geospatial application that aligns the places and events of human civilizations on a shared map and timeline, letting users trace the connections between their own history and the rest of the world.",
-    role: "Flutter Developer",
-    stack: ["Flutter", "Dart", "Maps & GIS", "REST APIs", "Custom Animation"],
-    links: {
-      ios: "https://apps.apple.com/us/app/siru-%D8%B3%D9%8A%D8%B1%D9%88%D8%A7/id1645884389",
-    },
-    icon: "/apps/siru.jpg",
-    featured: false,
-    accent: ["#F97316", "#EAB308"],
-  },
-  {
-    slug: "meer",
-    name: "Meer",
-    nameAr: "مير",
-    category: "Marketplace",
-    tagline: "Where advertising talent meets business.",
-    description:
-      "A two-sided marketplace connecting creative talent in advertising and marketing with business owners. Creatives build profiles and showcase past work; businesses post projects and receive offers, with direct messaging throughout.",
-    role: "Flutter Developer",
-    stack: ["Flutter", "Dart", "Real-time Chat", "REST APIs", "Firebase", "File Upload"],
-    links: {
-      ios: "https://apps.apple.com/us/app/meer/id1610110479",
-    },
-    icon: "/apps/meer.jpg",
-    featured: false,
-    accent: ["#A855F7", "#3B82F6"],
-  },
-  {
-    slug: "on-nota",
-    name: "On Nota",
-    nameAr: "عالحساب",
-    category: "E-Commerce",
-    tagline: "Grocery shopping, simplified.",
-    description:
-      "A grocery and everyday-essentials shopping app focused on making the weekly shop fast and frictionless, from browsing to checkout.",
-    role: "Flutter Developer",
-    stack: ["Flutter", "Dart", "REST APIs", "Payment Gateways", "Push Notifications"],
-    links: {
-      ios: "https://apps.apple.com/eg/app/%D8%B9%D8%A7%D9%84%D8%AD%D8%B3%D8%A7%D8%A8/id6462117195",
-    },
-    icon: "/apps/on-nota.jpg",
-    featured: false,
-    accent: ["#EC4899", "#F43F5E"],
   },
   {
     slug: "banhawy-ent",
