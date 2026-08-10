@@ -105,4 +105,5 @@ A few items are worth reviewing:
 
 - **Blog** — add entries to `src/data/posts.ts` (or swap it for an MDX/CMS loader); `/blog` renders them with no other changes.
 - **Localisation** — copy already lives outside JSX and `src/i18n/` holds `en`/`ar` dictionaries plus RTL direction handling. Adding a locale means wrapping routes in `app/[locale]`, not rewriting components.
-- **Projects** — add to `src/data/projects.ts`. Drop a matching icon in `public/apps/`, or leave `icon: null` and the card falls back to generated art keyed to the project's accent colours.
+- **Projects** — add to `src/data/projects.ts`. Artwork degrades in three steps: real App Store screenshots (`screenshots: [...]`) → the real store icon (`icon`) → generated art keyed to the project's accent colours. Set only what you have.
+- **Screenshots** — these are the clients' own App Store marketing assets and already contain a device frame, so they must never be wrapped in another phone mockup. They were pulled at `540x0w.webp` from Apple's CDN (~25KB each vs ~103KB for the PNG); appending that size/format spec to an `artworkUrl`/`screenshotUrl` base path works for any listing.

@@ -2,14 +2,30 @@
 
 import Image from "next/image";
 import type { Project } from "@/data/projects";
+import { ScreenshotGallery } from "./screenshot-gallery";
 
 /**
- * Project visual. Uses the real store icon when we have one, and falls back to
- * generated art keyed to the project's accent colours so the grid still reads
- * as one designed set rather than a row of holes.
+ * Project visual, in descending order of what we actually have:
+ *   1. real App Store screenshots
+ *   2. the real store icon
+ *   3. generated art keyed to the project's accent colours
+ *
+ * The fallbacks matter — several apps have been delisted by their clients, and
+ * the grid still has to read as one designed set rather than a row of holes.
  */
 export function AppArtwork({ project, priority = false }: { project: Project; priority?: boolean }) {
   const [from, to] = project.accent;
+
+  if (project.screenshots?.length) {
+    return (
+      <ScreenshotGallery
+        screenshots={project.screenshots}
+        appName={project.name}
+        icon={project.icon}
+        accent={project.accent}
+      />
+    );
+  }
 
   return (
     <div className="relative aspect-[16/10] w-full overflow-hidden">

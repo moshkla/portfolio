@@ -20,6 +20,9 @@ export type Project = {
   links: ProjectLinks;
   /** Real store artwork in /public/apps, or null to fall back to generated art. */
   icon: string | null;
+  /** Real App Store marketing screenshots. Already device-framed by the client,
+   *  so they must never be wrapped in another phone mockup. */
+  screenshots?: string[];
   featured: boolean;
   /** Tailwind gradient stops for the card's ambient glow + fallback art. */
   accent: [string, string];
@@ -42,6 +45,11 @@ export const projects: Project[] = [
       android: "https://play.google.com/store/apps/details?id=com.taibahtech.kanaf",
     },
     icon: "/apps/kanaf.jpg",
+    screenshots: [
+      "/apps/screens/kanaf-1.webp",
+      "/apps/screens/kanaf-2.webp",
+      "/apps/screens/kanaf-3.webp",
+    ],
     featured: true,
     accent: ["#3B82F6", "#8B5CF6"],
   },
@@ -60,6 +68,11 @@ export const projects: Project[] = [
       android: "https://play.google.com/store/apps/details?id=com.finzey.app",
     },
     icon: "/apps/finzey.jpg",
+    screenshots: [
+      "/apps/screens/finzey-1.webp",
+      "/apps/screens/finzey-2.webp",
+      "/apps/screens/finzey-3.webp",
+    ],
     featured: true,
     accent: ["#10B981", "#3B82F6"],
   },
@@ -78,6 +91,11 @@ export const projects: Project[] = [
       android: "https://play.google.com/store/apps/details?id=com.winveston.app",
     },
     icon: "/apps/winveston.jpg",
+    screenshots: [
+      "/apps/screens/winveston-1.webp",
+      "/apps/screens/winveston-2.webp",
+      "/apps/screens/winveston-3.webp",
+    ],
     featured: true,
     accent: ["#6366F1", "#22D3EE"],
   },
@@ -95,6 +113,11 @@ export const projects: Project[] = [
       android: "https://play.google.com/store/apps/details?id=kwayes.rentop.app",
     },
     icon: "/apps/rentop.jpg",
+    screenshots: [
+      "/apps/screens/rentop-1.webp",
+      "/apps/screens/rentop-2.webp",
+      "/apps/screens/rentop-3.webp",
+    ],
     featured: true,
     accent: ["#F59E0B", "#EF4444"],
   },
@@ -112,6 +135,11 @@ export const projects: Project[] = [
       android: "https://play.google.com/store/apps/details?id=com.diet.watchers.app",
     },
     icon: "/apps/diet-watchers.jpg",
+    screenshots: [
+      "/apps/screens/diet-watchers-1.webp",
+      "/apps/screens/diet-watchers-2.webp",
+      "/apps/screens/diet-watchers-3.webp",
+    ],
     featured: true,
     accent: ["#22C55E", "#84CC16"],
   },
