@@ -13,7 +13,6 @@ import {
 export type SkillCategory = {
   id: string;
   title: string;
-  description: string;
   icon: LucideIcon;
   skills: string[];
   /** Drives the per-card accent gradient. */
@@ -30,15 +29,13 @@ export const skillCategories: SkillCategory[] = [
   {
     id: "mobile",
     title: "Mobile",
-    description: "Cross-platform and native, shipped to both stores.",
     icon: Smartphone,
     accent: "from-primary/[0.10] to-transparent",
-    skills: ["Flutter", "Dart", "Android", "iOS", "Java", "Publish on all stores"],
+    skills: ["Flutter", "Dart", "Android", "iOS", "Java", "Store releases"],
   },
   {
     id: "architecture",
     title: "Architecture",
-    description: "Structure that survives the second year of a codebase.",
     icon: Layers,
     accent: "from-primary/[0.10] to-transparent",
     skills: [
@@ -47,21 +44,19 @@ export const skillCategories: SkillCategory[] = [
       "Repository Pattern",
       "MVVM",
       "Feature-First",
-      "Dependency Injection (GetIt)",
+      "DI (GetIt)",
     ],
   },
   {
     id: "state",
     title: "State Management",
-    description: "Predictable state at every scale of app.",
     icon: Boxes,
     accent: "from-primary/[0.10] to-transparent",
-    skills: ["Bloc", "Cubit", "Provider", "GetX", "Error Handling (dartz)"],
+    skills: ["Bloc", "Cubit", "Provider", "GetX", "dartz"],
   },
   {
     id: "backend",
     title: "Backend & Data",
-    description: "Everything behind the interface.",
     icon: Server,
     accent: "from-primary/[0.10] to-transparent",
     skills: [
@@ -70,46 +65,40 @@ export const skillCategories: SkillCategory[] = [
       "GraphQL",
       "SQFlite",
       "Hive",
-      "SharedPreferences",
-      "GetStorage",
-      "Streaming (Pusher & Firebase)",
+      "Local storage",
+      "Pusher",
     ],
   },
   {
     id: "ai",
     title: "AI",
-    description: "Not a buzzword — a daily engineering tool.",
     icon: Sparkles,
     accent: "from-primary/[0.10] to-transparent",
     skills: [
       "Large Language Models",
       "Prompt Engineering",
       "AI Integration",
-      "AI-Assisted Development",
-      "AI Code Review",
+      "AI-assisted development & review",
     ],
   },
   {
     id: "devops",
     title: "DevOps & Quality",
-    description: "Ship fast without shipping regressions.",
     icon: Rocket,
     accent: "from-primary/[0.10] to-transparent",
     skills: [
       "GitHub Actions",
       "CodeMagic",
-      "Shorebird (Code Push)",
+      "Shorebird",
       "Unit & Widget Testing",
       "TDD",
       "Crashlytics",
-      "Git",
       "Code Review",
     ],
   },
   {
     id: "integrations",
     title: "Integrations",
-    description: "The plumbing real products need.",
     icon: CreditCard,
     accent: "from-primary/[0.10] to-transparent",
     skills: [
@@ -119,25 +108,22 @@ export const skillCategories: SkillCategory[] = [
       "Apple Pay",
       "Google Pay",
       "In-App Purchase",
-      "Google Maps & Flutter Map",
+      "Google Maps",
       "Agora & Zoom",
-      "Firebase Messaging",
-      "Dynamic Links (Branch & Firebase)",
+      "Push & Dynamic Links",
     ],
   },
   {
     id: "craft",
     title: "UI & Craft",
-    description: "Interfaces that feel considered on every screen size.",
     icon: Palette,
     accent: "from-primary/[0.10] to-transparent",
     skills: [
       "UI/UX Design",
-      "Implicit & Explicit Animation",
-      "Responsive (MediaQuery & ScreenUtil)",
-      "Responsive Framework",
+      "Animation",
+      "Responsive UI",
       "Multi-Theming",
-      "Localization",
+      "Localization & RTL",
     ],
   },
 ];

@@ -1,7 +1,6 @@
 "use client";
 
 import { skillCategories } from "@/data/skills";
-import { SectionHeading } from "@/components/shared/section-heading";
 import { StaggerGroup, StaggerItem } from "@/components/shared/reveal";
 import { SpotlightCard } from "@/components/shared/spotlight-card";
 import { Badge } from "@/components/ui/badge";
@@ -15,14 +14,14 @@ export function SkillsSection() {
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-dots opacity-60 mask-fade-b" />
 
       <div className="container-page relative">
-        <SectionHeading
-          eyebrow="Skills"
-          title="The toolkit, honestly stated."
-          description="Everything here is something I've shipped with — not a list of things I've read about."
-        />
+        {/* No visible heading: the section is a reference block, and the
+            cards name themselves. The nav, the ⌘K menu and the scroll spy all
+            target #skills, and screen readers need the section named, so the
+            label stays in the accessibility tree rather than on screen. */}
+        <h2 className="sr-only">Skills</h2>
 
         <StaggerGroup
-          className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
           gap={0.06}
           as="ul"
         >
@@ -30,7 +29,7 @@ export function SkillsSection() {
             const Icon = category.icon;
             return (
               <StaggerItem key={category.id} as="li" variants={blurIn} className="h-full">
-                <SpotlightCard className="h-full p-6">
+                <SpotlightCard className="h-full p-5">
                   {/* Accent wash, revealed on hover. */}
                   <div
                     aria-hidden
@@ -40,20 +39,19 @@ export function SkillsSection() {
                     )}
                   />
 
+                  {/* The icon sits on the title's baseline rather than in a
+                      44px block above it. That block plus its margin was ~64px
+                      of height on every card, and the grid takes its row height
+                      from the tallest card — so it cost the section twice. */}
                   <div className="relative flex h-full flex-col">
-                    <span className="grid size-11 place-items-center rounded-xl border border-border bg-foreground/[0.03] text-accent transition-transform duration-500 group-hover:scale-110">
-                      <Icon className="size-5" aria-hidden />
-                    </span>
-
-                    <h3 className="mt-5 text-lg font-semibold tracking-tight">{category.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {category.description}
-                    </p>
-
-                    <ul className="mt-5 flex flex-wrap gap-1.5">
+                    <h3 className="flex items-center gap-2 text-base font-semibold tracking-tight">
+                      <Icon className="size-4 shrink-0 text-accent" aria-hidden />
+                      {category.title}
+                    </h3>
+                    <ul className="mt-3 flex flex-wrap gap-1">
                       {category.skills.map((skill) => (
                         <li key={skill}>
-                          <Badge className="transition-colors duration-300 group-hover:border-primary/25 group-hover:text-foreground/80">
+                          <Badge className="px-2 py-0.5 transition-colors duration-300 group-hover:border-primary/25 group-hover:text-foreground/80">
                             {skill}
                           </Badge>
                         </li>
