@@ -13,8 +13,13 @@ export function ProjectCard({
   project: Project;
   priority?: boolean;
 }) {
+  // The glow follows the page accent rather than `project.accent[0]`. Those
+  // fifteen values are arbitrary Tailwind gradient pairs — Kanaf's is
+  // blue→violet while its real store icon is ochre — so as card chrome they
+  // put fifteen unrelated hues on one grid. They still key the generated
+  // fallback artwork, which is where they belong.
   return (
-    <SpotlightCard className="flex h-full flex-col" glow={project.accent[0]}>
+    <SpotlightCard className="flex h-full flex-col">
       <AppArtwork project={project} priority={priority} />
 
       <div className="flex flex-1 flex-col p-6 pt-2 sm:p-7 sm:pt-3">

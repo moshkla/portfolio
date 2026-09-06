@@ -39,9 +39,12 @@ export function HeroSection() {
           {/* Availability pill */}
           <div className="animate-rise" style={delay(0)}>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-foreground/[0.03] px-3.5 py-1.5 text-xs text-muted-foreground backdrop-blur">
+              {/* A steady dot, not a pinging one. Bright emerald on the
+                  juniper ground read as an acid accent, and the ping was a
+                  fourth ambient loop on a page that now has one. Availability
+                  is a fact; it does not need to pulse to be believed. */}
               <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-70" />
-                <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
+                <span className="relative inline-flex size-2 rounded-full bg-[#4E8A66]" />
               </span>
               {profile.availability}
             </span>

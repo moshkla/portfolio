@@ -23,8 +23,11 @@ export function AuroraBackground({ className }: { className?: string }) {
         {/* Hairline grid, faded toward the bottom of the hero. */}
         <div className="bg-grid mask-fade-b absolute inset-0" />
 
-        {/* Drifting colour fields. Large-radius blur is expensive to rasterise,
-            so phones get one modest field and the full treatment starts at md. */}
+        {/* Two static fields, down from three drifting ones. The third was a
+            hard-coded #8B5CF6 violet that belonged to no token and clashed
+            with the juniper ground; the drift was ambient motion nobody
+            asked for. Large-radius blur is expensive to rasterise, so phones
+            get one modest field and the full treatment starts at md. */}
         <div
           className="animate-aurora absolute -top-40 left-1/2 size-[26rem] -translate-x-1/2 rounded-full opacity-50 blur-[70px] md:size-[46rem] md:blur-[120px]"
           style={{
@@ -40,15 +43,6 @@ export function AuroraBackground({ className }: { className?: string }) {
               "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 65%)",
             ["--aurora-duration" as string]: "18s",
             animationDelay: "-6s",
-          }}
-        />
-        <div
-          className="animate-aurora absolute -right-24 top-56 hidden size-[30rem] rounded-full opacity-30 blur-[110px] md:block"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 50%, color-mix(in oklab, #8B5CF6 34%, transparent), transparent 65%)",
-            ["--aurora-duration" as string]: "26s",
-            animationDelay: "-12s",
           }}
         />
       </div>

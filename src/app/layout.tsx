@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "sonner";
@@ -10,9 +10,20 @@ import { profile, siteConfig } from "@/data/profile";
 import { buildStructuredData } from "@/lib/structured-data";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+/**
+ * One family for the whole page, Latin and Arabic alike.
+ *
+ * The previous face carried `subsets: ["latin"]` only, so the ten Arabic
+ * project names in `data/projects.ts` — كَنَف, آركو للخدمات, عيادات حياتنا —
+ * fell through to whatever the visitor's OS happened to pick. On a page whose
+ * readers are in the Gulf, that was the one piece of text nobody had set.
+ */
+const plex = IBM_Plex_Sans_Arabic({
+  variable: "--font-plex",
+  subsets: ["latin", "arabic"],
+  /* 400/500/600/700 only — nothing on the page sets a lighter weight,
+     and each unused weight is four more subset files on the critical path. */
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -57,8 +68,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#09090B" },
-    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)", color: "#0D1F19" },
+    { media: "(prefers-color-scheme: light)", color: "#EFF1EC" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -67,7 +78,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={geistSans.variable}>
+    <html lang="en" suppressHydrationWarning className={plex.variable}>
       <head>
         {/* JSON-LD for rich results — generated from the same data the page renders. */}
         <script

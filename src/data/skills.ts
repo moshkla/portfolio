@@ -17,6 +17,11 @@ export type SkillCategory = {
   icon: LucideIcon;
   skills: string[];
   /** Drives the per-card accent gradient. */
+  /** Gradient stops for the card's hover wash. Every category carries the
+   *  same value: these were eight different Tailwind hues (blue, violet, sky,
+   *  emerald, orange, pink, fuchsia), which put a rainbow behind a list of
+   *  engineering skills and competed with the real app artwork further down
+   *  the page. The colour on this site belongs to the shipped work. */
   accent: string;
 };
 
@@ -27,7 +32,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Mobile",
     description: "Cross-platform and native, shipped to both stores.",
     icon: Smartphone,
-    accent: "from-blue-500/20 to-cyan-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: ["Flutter", "Dart", "Android", "iOS", "Java", "Publish on all stores"],
   },
   {
@@ -35,7 +40,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Architecture",
     description: "Structure that survives the second year of a codebase.",
     icon: Layers,
-    accent: "from-violet-500/20 to-blue-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: [
       "Clean Architecture",
       "SOLID Principles",
@@ -50,7 +55,7 @@ export const skillCategories: SkillCategory[] = [
     title: "State Management",
     description: "Predictable state at every scale of app.",
     icon: Boxes,
-    accent: "from-sky-500/20 to-indigo-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: ["Bloc", "Cubit", "Provider", "GetX", "Error Handling (dartz)"],
   },
   {
@@ -58,7 +63,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Backend & Data",
     description: "Everything behind the interface.",
     icon: Server,
-    accent: "from-emerald-500/20 to-teal-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: [
       "Firebase",
       "REST APIs",
@@ -75,7 +80,7 @@ export const skillCategories: SkillCategory[] = [
     title: "AI",
     description: "Not a buzzword — a daily engineering tool.",
     icon: Sparkles,
-    accent: "from-blue-500/25 to-violet-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: [
       "Large Language Models",
       "Prompt Engineering",
@@ -89,7 +94,7 @@ export const skillCategories: SkillCategory[] = [
     title: "DevOps & Quality",
     description: "Ship fast without shipping regressions.",
     icon: Rocket,
-    accent: "from-orange-500/20 to-amber-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: [
       "GitHub Actions",
       "CodeMagic",
@@ -106,7 +111,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Integrations",
     description: "The plumbing real products need.",
     icon: CreditCard,
-    accent: "from-pink-500/20 to-rose-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: [
       "MyFatoorah",
       "Amazon Payfort",
@@ -125,7 +130,7 @@ export const skillCategories: SkillCategory[] = [
     title: "UI & Craft",
     description: "Interfaces that feel considered on every screen size.",
     icon: Palette,
-    accent: "from-fuchsia-500/20 to-purple-400/10",
+    accent: "from-primary/[0.10] to-transparent",
     skills: [
       "UI/UX Design",
       "Implicit & Explicit Animation",

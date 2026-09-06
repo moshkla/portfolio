@@ -4,55 +4,64 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ---------------------------------------------------------------------------
-   Design tokens
-   Dark is the default experience; light is a first-class alternative.
+   Design tokens — "Registry"
+
+   The palette is near-monochrome on purpose: this page is a frame around
+   fifteen shipped apps, and the app artwork is where the colour belongs.
+   The ground is a true juniper green rather than a tinted near-black, drawn
+   from the institutional world Kanaf lives in (Ministry of Justice, Nafath,
+   Najiz). The single accent is sampled from Kanaf's own store icon and is
+   reserved for things you can act on — links, focus, active nav — never for
+   decoration.
+
+   Light and dark carry different accent values because the ochre that reads
+   correctly on juniper (#C98639, 5.7:1) drops to 2.99:1 on paper and fails.
 --------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #09090b;
-  --card: #fafafa;
-  --card-foreground: #09090b;
-  --popover: #ffffff;
-  --popover-foreground: #09090b;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --primary-strong: #1d4ed8;
-  --accent: #3b82f6;
-  --accent-foreground: #ffffff;
-  --muted: #f4f4f5;
-  --muted-foreground: #52525b;
-  --border: rgba(9, 9, 11, 0.1);
-  --input: rgba(9, 9, 11, 0.12);
-  --ring: #3b82f6;
-  --glass: rgba(255, 255, 255, 0.72);
-  --glass-border: rgba(9, 9, 11, 0.08);
-  --grid-line: rgba(9, 9, 11, 0.045);
-  --radius: 1rem;
+  --background: #eff1ec;
+  --foreground: #10201a;
+  --card: #e7eae3;
+  --card-foreground: #10201a;
+  --popover: #f5f6f2;
+  --popover-foreground: #10201a;
+  --primary: #8a5a1f;
+  --primary-foreground: #f5f6f2;
+  --primary-strong: #7e511b;
+  --accent: #8a5a1f;
+  --accent-foreground: #f5f6f2;
+  --muted: #e4e7df;
+  --muted-foreground: #5e665f;
+  --border: rgba(16, 32, 26, 0.14);
+  --input: rgba(16, 32, 26, 0.18);
+  --ring: #8a5a1f;
+  --glass: rgba(245, 246, 242, 0.86);
+  --glass-border: rgba(16, 32, 26, 0.12);
+  --grid-line: rgba(16, 32, 26, 0.05);
+  /* Radius varies by hierarchy — see the scale in @theme. A single radius on
+     every surface is what makes a page read as a component kit. */
+  --radius: 0.375rem;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card: #111113;
-  --card-foreground: #fafafa;
-  --popover: #111113;
-  --popover-foreground: #fafafa;
-  --primary: #3b82f6;
-  --primary-foreground: #ffffff;
-  /* #3B82F6 only reaches 3.7:1 against white, so filled surfaces that carry
-     white text use this deeper blue (5.2:1) instead. The brand blue stays in
-     use for glows, borders and text on dark, where it measures 5.4:1. */
-  --primary-strong: #2563eb;
-  --accent: #60a5fa;
-  --accent-foreground: #09090b;
-  --muted: #18181b;
-  --muted-foreground: #a1a1aa;
-  --border: rgba(250, 250, 250, 0.08);
-  --input: rgba(250, 250, 250, 0.1);
-  --ring: #3b82f6;
-  --glass: rgba(17, 17, 19, 0.6);
-  --glass-border: rgba(250, 250, 250, 0.08);
-  --grid-line: rgba(250, 250, 250, 0.035);
+  --background: #0d1f19;
+  --foreground: #eff1ec;
+  --card: #142a22;
+  --card-foreground: #eff1ec;
+  --popover: #142a22;
+  --popover-foreground: #eff1ec;
+  --primary: #c98639;
+  --primary-foreground: #10201a;
+  --primary-strong: #d08f45;
+  --accent: #c98639;
+  --accent-foreground: #10201a;
+  --muted: #17322a;
+  --muted-foreground: #9aa79e;
+  --border: rgba(239, 241, 236, 0.12);
+  --input: rgba(239, 241, 236, 0.16);
+  --ring: #c98639;
+  --glass: rgba(13, 31, 25, 0.88);
+  --glass-border: rgba(239, 241, 236, 0.1);
+  --grid-line: rgba(239, 241, 236, 0.045);
 }
 
 @theme inline {
@@ -74,17 +83,23 @@
   --color-ring: var(--ring);
   --color-glass-border: var(--glass-border);
 
-  --radius-sm: calc(var(--radius) - 8px);
-  --radius-md: calc(var(--radius) - 4px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 8px);
-  --radius-2xl: calc(var(--radius) + 16px);
+  /* Stepped by hierarchy rather than derived from one number: a chip, a
+     button and a media panel are different kinds of object and should not
+     share a corner. The old scale was `--radius ± 8px`, which with a 6px base
+     would have computed to a negative value. */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 10px;
+  --radius-2xl: 14px;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  /* One family across both scripts, so Arabic project names are set rather
+     than left to the OS. */
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
   /* System mono. A webfont here would cost ~23KB on the critical path to
      style a handful of two-digit labels. */
   --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
@@ -107,11 +122,24 @@
     overflow-x: hidden;
   }
 
-  /* Large display type wants tighter tracking to read as "product", not "document". */
+  /* Plex Sans Arabic is a squarer, more open face than the grotesk it replaced
+     and needs less negative tracking to hold together — -0.035em closed the
+     counters up at display sizes. Weight does the work instead. */
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.035em;
+    font-weight: 600;
+    letter-spacing: -0.018em;
     text-wrap: balance;
+  }
+
+  /* Arabic sets on a taller body and needs the extra leading; the Latin
+     figures are tabular so numbers in the same column line up. */
+  :lang(ar) {
+    line-height: 1.85;
+  }
+
+  body {
+    font-variant-numeric: tabular-nums;
   }
 
   p {
@@ -148,48 +176,38 @@
 }
 
 @layer utilities {
+  /* Was a 20px blur at 160% saturation. A near-opaque surface with one
+     hairline reads as a considered material rather than as frosted chrome,
+     and it costs nothing to rasterise while scrolling. */
   .glass {
     background: var(--glass);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--glass-border);
   }
 
-  /* `background-clip: text` only paints the element's own text nodes. Several
-     components (TextReveal, Counter) nest their text in child spans, which
-     would inherit `color: transparent` with no gradient behind them and render
-     invisible — so the gradient is re-applied to descendants. */
+  /* These two were gradient-clipped text: the headline faded to 62% opacity
+     toward its baseline, and the role line ran a three-stop sweep. Both are
+     among the clearest tells of a generated page, and the fade actively hurt
+     legibility on the most important line of the site. They keep their class
+     names so no component had to change, but they now just set colour.
+
+     The `color: inherit` on descendants undoes the old rule that had to paint
+     nested spans (TextReveal, Counter) to stop them rendering transparent. */
   .text-gradient {
-    --text-gradient-image: linear-gradient(
-      180deg,
-      var(--foreground) 0%,
-      color-mix(in oklab, var(--foreground) 62%, transparent) 100%
-    );
-    background-image: var(--text-gradient-image);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--foreground);
   }
 
   .text-gradient-primary {
-    --text-gradient-image: linear-gradient(
-      110deg,
-      var(--primary) 0%,
-      var(--accent) 55%,
-      var(--primary) 100%
-    );
-    background-image: var(--text-gradient-image);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--accent);
   }
 
   .text-gradient span,
   .text-gradient-primary span {
-    background-image: var(--text-gradient-image);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: inherit;
+    background-image: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
   }
 
   /* Hairline grid used behind the hero. */
@@ -274,15 +292,7 @@
   }
 }
 
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(7px);
-  }
-}
+
 
 .animate-rise {
   animation: rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -309,8 +319,14 @@
   animation: fade-in 0.8s ease-out both;
 }
 
+/* `bob` and `aurora` are gone. The page had three ambient loops running at
+   once — a drifting colour field, a bobbing scroll arrow and the skills
+   ticker — none of them prompted by the reader. The hero's staggered entrance
+   is now the page's one orchestrated moment; the ticker stays because it
+   carries content. These two classes are kept as no-ops so the components
+   that reference them need no edit. */
 .animate-bob {
-  animation: bob 2.2s ease-in-out infinite;
+  animation: none;
 }
 
 /* Navbar entrance. Also CSS: the navbar is above the fold, and driving this
@@ -347,21 +363,14 @@
   }
 }
 
-@keyframes aurora {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(3%, -4%, 0) scale(1.08);
-  }
-}
+
 
 .animate-marquee {
   animation: marquee var(--marquee-duration, 40s) linear infinite;
 }
 
 .animate-aurora {
-  animation: aurora var(--aurora-duration, 18s) ease-in-out infinite;
+  animation: none;
 }
 
 /* Respect the OS setting. Nothing here is load-bearing for comprehension. */
