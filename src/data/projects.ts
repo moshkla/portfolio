@@ -114,7 +114,6 @@ export const projects: Project[] = [
     stack: ["Flutter", "Dart", "Google Maps", "Payment Gateways", "REST APIs", "Push Notifications"],
     links: {
       ios: "https://apps.apple.com/eg/app/rentop-car-rental-dubai/id1661948480",
-      android: "https://play.google.com/store/apps/details?id=kwayes.rentop.app",
     },
     icon: "/apps/rentop.jpg",
     screenshots: [
@@ -205,9 +204,7 @@ export const projects: Project[] = [
       "A geospatial application that aligns the places and events of human civilizations on a shared map and timeline, letting users trace the connections between their own history and the rest of the world.",
     role: "Flutter Developer",
     stack: ["Flutter", "Dart", "Maps & GIS", "REST APIs", "Custom Animation"],
-    links: {
-      ios: "https://apps.apple.com/us/app/siru-%D8%B3%D9%8A%D8%B1%D9%88%D8%A7/id1645884389",
-    },
+    links: {},
     icon: "/apps/siru.jpg",
     screenshots: [
       "/apps/screens/siru-1.webp",
